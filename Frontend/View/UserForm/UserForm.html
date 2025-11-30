@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.65">
+    <title>UsersForm</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.5.1/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.5.1/uicons-regular-straight/css/uicons-regular-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.5.1/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.5.1/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <link rel="stylesheet" href="UserForm.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <nav>
+        <ul>
+            <!-- Profile -->
+            <li>
+                <a href="#">
+                    <i class="fas fa-user-circle"></i>
+                    <span class="nav-item">Profile</span>
+                </a>
+            </li>
+            <!-- User -->
+            <li>
+                <a href="/View/UserForm/UserForm.html">
+                    <i class="fas fa-user"></i>
+                    <span class="nav-item">User</span>
+                </a>
+            </li>
+            <!-- Movies -->
+            <li>
+                <a href="/View/MovieForm/MovieForm.html">
+                    <i class="fas fa-film"></i>
+                    <span class="nav-item">Movies</span>
+                </a>
+            </li>
+            <!-- Showtimes -->
+            <li>
+                <a href="/View/ShowtimeForm/ShowtimeForm.html">
+                    <i class="fas fa-clock"></i>
+                    <span class="nav-item">Showtimes</span>
+                </a>
+            </li>
+            <!-- Cinema Halls -->
+            <li>
+                <a href="/View/HallCinema/HallCinemaForm.html">
+                    <i class="fas fa-chair"></i>
+                    <span class="nav-item">Cinema Halls</span>
+                </a>
+            </li>
+            <!-- Logout -->
+            <li>
+                <a href="/View/Login/Login.html">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="nav-item">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="contenedor-formulario">
+        <h1>Users</h1>
+        <div class="content_buttons">
+        <button class="eventButton" onclick="showSection('crearUsuario')">
+            <i class="fi fi-rr-user-add"></i>Create
+        </button>
+        <button class="eventButton" onclick="showSection('mostrarUsuarios')">
+            <i class="fi fi-sr-eye"></i>Show
+        </button>
+        </div>
+        <div id="crearUsuario" style="display: block;">
+            <form id="User">
+                <label for="user">Username:</label>
+                <input type="text" id="username" name="user" required placeholder="Enter your username">
+                <br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password:" required>
+                <br>
+                <label for="name">First Name:</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your first name:">
+                <br>
+                <label for="last">Last Name:</label>
+                <input type="text" id="last" name="last" required placeholder="Enter your last name:">
+                <br>
+                <label for="pais">Country:</label>
+                <input type="text" id="pais" name="pais" required placeholder="Enter your country:">
+                <br>
+                <label for="role">Role:</label>
+                <select name="role" id="role">
+                    <option value="ADMIN">Administrator</option>
+                    <option value="USER">User</option>
+                </select>
+                <br>
+                <input type="submit" value="Add User">
+            </form>
+        </div>
+        <div id="mostrarUsuarios" style="display: none;">
+            <div class="content_buttons">
+                <label for="id">ID:</label>
+                <input type="id" id="id" name="id" placeholder="Enter a number">
+                <button class="eventButton" onclick="DeleteUser()">
+                    <span class="material-symbols-outlined" style="font-size: 20px">
+                    person_remove</span>Delete</button>
+                <button class="eventButton" onclick="SearchUser()">
+                    <span class="material-symbols-outlined" style="font-size: 20px">
+                        person_search</span>Search</button>
+            </div>
+            <table id="UsersMostrarDatos">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Country</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+            
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+    <div class="wrap">
+        <div class="widget">
+            <div class="fecha">
+               <p id="dayOfWeek" class="dayOfWeek"></p>
+               <p id="day" class="day"></p>
+               <p>of</p>
+               <p id="month" class="month"></p>
+               <p>of</p>
+               <p id="year" class="year"></p>
+            </div>
+
+            <div class="reloj">
+               <p id="hour" class="hour"></p>
+               <p>:</p>
+               <p id="minutes" class="minutes"></p>
+               <p>:</p>
+               <div class="caja-segundos">
+                    <p id="ampm" class="ampm"></p>
+                    <p id="seconds" class="seconds"></p>                   
+               </div>
+                
+            </div>
+        </div>
+    </div>
+<script src="UserForm.js"></script>
+</body>
+</html>

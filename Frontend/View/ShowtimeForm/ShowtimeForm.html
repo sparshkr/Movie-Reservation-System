@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.65">
+    <title>ShowtimeForm</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.5.1/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.5.1/uicons-regular-straight/css/uicons-regular-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.5.1/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.5.1/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <link rel="stylesheet" href="ShowtimeForm.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <!-- Profile -->
+            <li>
+                <a href="#">
+                    <i class="fas fa-user-circle"></i>
+                    <span class="nav-item">Profile</span>
+                </a>
+            </li>
+            <!-- User -->
+            <li>
+                <a href="/View/UserForm/UserForm.html">
+                    <i class="fas fa-user"></i>
+                    <span class="nav-item">User</span>
+                </a>
+            </li>
+            <!-- Movies -->
+            <li>
+                <a href="/View/MovieForm/MovieForm.html">
+                    <i class="fas fa-film"></i>
+                    <span class="nav-item">Movies</span>
+                </a>
+            </li>
+            <!-- Showtimes -->
+            <li>
+                <a href="/View/ShowtimeForm/ShowtimeForm.html">
+                    <i class="fas fa-clock"></i>
+                    <span class="nav-item">Showtimes</span>
+                </a>
+            </li>
+            <!-- Cinema Halls -->
+            <li>
+                <a href="/View/HallCinema/HallCinemaForm.html">
+                    <i class="fas fa-chair"></i>
+                    <span class="nav-item">Cinema Halls</span>
+                </a>
+            </li>
+            <!-- Logout -->
+            <li>
+                <a href="/View/Login/Login.html">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="nav-item">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="contenedor-formulario">
+        <h1>Cinema Showtimes</h1>
+        <div class="content_buttons">
+            <div>
+                <form id="generateReservationsForm">
+                    <button type="button" class="eventButton" onclick="generateReservations()">Generate Reservations</button>
+                </form>                
+            </div>
+            <button class="eventButton" onclick="showSection('createShowtime')">
+                <i class="fi fi-rr-clock"></i>Create
+            </button>
+            <button class="eventButton" onclick="showSection('showShowtimes')">
+                <i class="fi fi-sr-eye"></i>Show
+            </button>
+        </div>
+        <div id="createShowtime" style="display: block;">
+            <form id="ShowtimeCinema">
+                <label for="movieId">Movie ID:</label>
+                <input type="text" id="movieId" name="movieId" required placeholder="Enter the movie ID">
+                <br>
+                <label for="hallId">Hall ID:</label>
+                <input type="text" id="hallId" name="hallId" required placeholder="Enter the cinema hall ID">
+                <br>
+                <label for="anio">Year:</label>
+                <input type="text" id="anio" name="anio" required placeholder="Enter the year">
+                <br>
+                <label for="mes">Month:</label>
+                <input type="text" id="mes" name="mes" required placeholder="Enter the month">
+                <br>
+                <label for="dia">Day:</label>
+                <input type="text" id="dia" name="dia" required placeholder="Enter the day">
+                <br>
+                <label for="hour">Hour:</label>
+                <input type="text" id="hour" name="hour" required placeholder="Enter the hour">
+                <br>
+                <label for="minutes">Minutes:</label>
+                <input type="text" id="minutes" name="minutes" required placeholder="Enter the minutes">
+                <br>
+                <input type="submit" value="Add Showtime">
+            </form>
+        </div>
+        <div id="showShowtimes" style="display: none;">
+            <div class="content_buttons">
+                <label for="id">ID:</label>
+                <input type="text" id="id" name="id" placeholder="Enter a number">
+                <button class="eventButton" onclick="DeleteShowtime()">
+                    <span class="material-symbols-outlined" style="font-size: 20px">scheduledelete</span>Delete
+                </button>
+                <button class="eventButton" onclick="SearchShowtime()">
+                    <span class="material-symbols-outlined" style="font-size: 20px">schedulesearch</span>Search
+                </button>
+            </div>
+            <table id="ShowtimesMostrarDatos">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Movie ID</th>
+                        <th>Hall ID</th>
+                        <th>Year</th>
+                        <th>Month</th>
+                        <th>Day</th>
+                        <th>Hour</th>
+                        <th>Minutes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="wrap">
+        <div class="widget">
+            <div class="fecha">
+               <p id="dayOfWeek" class="dayOfWeek"></p>
+               <p id="day" class="day"></p>
+               <p>of</p>
+               <p id="month" class="month"></p>
+               <p>of</p>
+               <p id="year" class="year"></p>
+            </div>
+
+            <div class="reloj">
+               <p id="hour" class="hour"></p>
+               <p>:</p>
+               <p id="minutes" class="minutes"></p>
+               <p>:</p>
+               <div class="caja-segundos">
+                    <p id="ampm" class="ampm"></p>
+                    <p id="seconds" class="seconds"></p>                   
+               </div>
+                
+            </div>
+        </div>
+    </div>
+<script src="ShowtimeForm.js"></script>
+</body>
+</html>
